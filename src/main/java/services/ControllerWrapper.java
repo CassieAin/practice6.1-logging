@@ -32,22 +32,26 @@ public class ControllerWrapper {
         controller = new BooksController(inputBooks);
     }
 
-    public void printArray(Book[] printBooks){
+    public void displayBooks(Book[] printBooks){
+        FilesProcessing.writeBooksToFile(printBooks, "printed_books");
         for(Book book : printBooks){
-            System.out.println(book + ", ");
+            System.out.println(book);
         }
     }
 
-    public void sortArray(){
+    public void displaySortedArray(){
         System.out.println("\nSorted array: ");
-        controller.sortBooksByPublisher();
-        printArray(books);
+        Book[] sortedBooks = controller.sortBooksByPublisher();
+        FilesProcessing.writeBooksToFile(sortedBooks, "books_sorted_by_publisher");
+        displayBooks(sortedBooks);
     }
 
     public void displayBooksByDate(Date date){
         if(!Arrays.asList().contains(date)) {
             System.out.println("\nBooks that are later than " + date + ": ");
-            printArray(controller.getBooksByDate(date));
+            Book[] booksByDate = controller.getBooksByDate(date);
+            FilesProcessing.writeBooksToFile(booksByDate, "books_by_date");
+            displayBooks(booksByDate);
         }else{
             System.out.println("\nThere are no books published after " + date);
         }
@@ -55,16 +59,20 @@ public class ControllerWrapper {
 
     public void displayBooksByAuthor(String author){
         System.out.println("\nBooks that were written by " + author + ": ");
-        printArray(controller.getBooksByAuthor(author));
+        Book[] booksByAuthor = controller.getBooksByAuthor(author);
+        FilesProcessing.writeBooksToFile(booksByAuthor, "books_by_author");
+        displayBooks(booksByAuthor);
     }
 
     public void displayBooksByPublisher(String publisher){
-        if(!Arrays.asList().contains(publisher)){
+        if(Arrays.asList().contains(publisher)){
             System.out.println("\nThere are no books published by " + publisher);
 
         }else{
             System.out.println("\nBooks that were published by " + publisher + ": ");
-            printArray(controller.getBooksByPublisher(publisher));
+            Book[] booksByPublisher = controller.getBooksByPublisher(publisher);
+            FilesProcessing.writeBooksToFile(booksByPublisher, "books_by_publisher");
+            displayBooks(booksByPublisher);
         }
 
     }

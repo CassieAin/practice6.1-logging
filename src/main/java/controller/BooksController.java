@@ -2,6 +2,7 @@ package controller;
 
 import model.Book;
 import services.BookPublisherComparator;
+import sun.plugin.javascript.navig.Array;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -56,8 +57,9 @@ public class BooksController {
         return Arrays.copyOf(result, count);
     }
 
-    public void sortBooksByPublisher(){
-        Arrays.sort(books, new BookPublisherComparator());
+    public Book[] sortBooksByPublisher(){
+        Book[] booksToSort = Arrays.copyOf(books, books.length);
+        Arrays.sort(booksToSort, new BookPublisherComparator());
+        return booksToSort;
     }
-
 }

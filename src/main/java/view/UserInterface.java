@@ -44,11 +44,11 @@ public class UserInterface {
                     display.displayBooksByDate(new Date(year,1,1));
                     break;
                 case 4:
-                    display.sortArray();
+                    display.displaySortedArray();
                     break;
                 case 5:
                     System.out.println("Printed array:");
-                    display.printArray(display.getBooks());
+                    display.displayBooks(display.getBooks());
                     break;
                 case 6:
                     System.out.println("Goodbye!");
