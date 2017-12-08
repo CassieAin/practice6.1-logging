@@ -2,6 +2,7 @@ package view;
 
 import model.Book;
 import services.ControllerWrapper;
+import services.DataLogging;
 import services.FilesProcessing;
 
 import java.util.Date;
@@ -31,24 +32,28 @@ public class UserInterface {
             switch(number){
                 case 1:
                     System.out.print("Input the author name:" + scanner.nextLine());
-                    display.displayBooksByAuthor(scanner.nextLine());
+                    String displayedBooksByAuthor = display.displayBooksByAuthor(scanner.nextLine());
+                    DataLogging.logData(displayedBooksByAuthor);
                     break;
                 case 2:
                     System.out.print("Input the publisher name:" + scanner.nextLine());
-                    display.displayBooksByPublisher(scanner.nextLine());
+                    String displayedBooksByPublisher = display.displayBooksByPublisher(scanner.nextLine());
+                    DataLogging.logData(displayedBooksByPublisher);
                     break;
                 case 3:
                     int year = scanner.nextInt();
                     System.out.print("Input the year:" + year);
-                    scanner.nextLine();
-                    display.displayBooksByDate(new Date(year,1,1));
+                    //scanner.nextLine();
+                    String displayedBooksByDate = display.displayBooksByDate(new Date(year,1,1));
+                    DataLogging.logData(displayedBooksByDate);
                     break;
                 case 4:
-                    display.displaySortedArray();
+                    String displayedSortedArray = display.displaySortedArray();
+                    DataLogging.logData(displayedSortedArray);
                     break;
                 case 5:
-                    System.out.println("Printed array:");
-                    display.displayBooks(display.getBooks());
+                    String displayedBooks = display.displayBooks(display.getBooks());
+                    DataLogging.logData(displayedBooks);
                     break;
                 case 6:
                     System.out.println("Goodbye!");
